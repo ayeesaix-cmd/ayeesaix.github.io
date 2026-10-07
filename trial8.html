@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="trial8.css" />
+  </head>
+  <body class="dark-mode">
+    <button
+      class="theme-toggle"
+      id="themeToggle"
+      onclick="toggleTheme()"
+      title="Toggle Light/Dark Mode"
+    >
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="toast" id="toast"></div>
+
+    <div class="auth-container" id="authContainer">
+      <div class="overlay-container" id="overlayContainer">
+        <div class="overlay-panel overlay-left">
+          <span class="sub-badge">ALREADY ENROLLED</span>
+          <h2>Welcome back</h2>
+          <p>
+            Your record is waiting. Switch over to sign in with your student
+            number.
+          </p>
+          <button class="action-btn outline-btn" id="gotoSignIn">
+            Sign in
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <span class="sub-badge">NEW STUDENT</span>
+          <h2>Create a profile</h2>
+          <p>
+            Register with your identity, year, section, and family contacts.
+          </p>
+          <button class="action-btn outline-btn" id="gotoSignUp">
+            Create account
+          </button>
+        </div>
+      </div>
+
+      <div class="form-container sign-in-container">
+        <form id="signInForm" onsubmit="handleSignIn(event)">
+          <span class="sub-badge">WELCOME BACK</span>
+          <h1 class="form-title">Sign in</h1>
+          <p class="form-subtitle">
+            Enter your student number and password to continue.
+          </p>
+
+          <div class="input-group">
+            <i class="fas fa-hashtag input-icon"></i>
+            <input
+              type="text"
+              id="loginStudentNum"
+              placeholder=" "
+              required
+              pattern="[0-9]+"
+              title="Please enter numbers only"
+            />
+            <label for="loginStudentNum">Student Number</label>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-lock input-icon"></i>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder=" "
+              required
+            />
+            <label for="loginPassword">Password</label>
+          </div>
+
+          <button type="submit" class="action-btn primary-btn btn-full">
+            LOGIN
+          </button>
+        </form>
+      </div>
+
+      <div class="form-container sign-up-container">
+        <div class="form-header">
+          <span class="sub-badge">ENROLLMENT</span>
+          <h1 class="form-title">Create Account</h1>
+          <p class="form-subtitle">
+            Fill in your personal details and family/guardian contacts.
+          </p>
+        </div>
+        <form
+          id="signUpForm"
+          onsubmit="handleSignUp(event)"
+          class="scrollable-form-content"
+        >
+          <div class="section-label">STUDENT IDENTITY</div>
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-hashtag input-icon"></i>
+              <input
+                type="text"
+                id="regStudentNum"
+                placeholder=" "
+                required
+                pattern="[0-9]+"
+                title="Numbers only"
+              />
+              <label for="regStudentNum">Student Number</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="regFirstName" placeholder=" " required />
+              <label for="regFirstName">First Name</label>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="regSurname" placeholder=" " required />
+              <label for="regSurname">Last name</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-calendar-alt input-icon"></i>
+              <input
+                type="number"
+                id="regAge"
+                placeholder=" "
+                required
+                min="1"
+                max="100"
+              />
+              <label for="regAge">Age</label>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-calendar input-icon"></i>
+              <input type="date" id="regBirthday" placeholder=" " required />
+              <label for="regBirthday">Birthday</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-graduation-cap input-icon"></i>
+              <input type="text" id="regYear" placeholder=" " required />
+              <label for="regYear">Year</label>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-users input-icon"></i>
+              <input type="text" id="regSection" placeholder=" " required />
+              <label for="regSection">Section</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone input-icon"></i>
+              <input
+                type="tel"
+                id="regContact"
+                placeholder=" "
+                required
+                pattern="[0-9+ ]+"
+              />
+              <label for="regContact">Contact Number</label>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-map-marker-alt input-icon"></i>
+            <input type="text" id="regAddress" placeholder=" " required />
+            <label for="regAddress">Address</label>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-key input-icon"></i>
+            <input type="password" id="regPassword" placeholder=" " required />
+            <label for="regPassword">Password</label>
+          </div>
+
+          <div class="section-label" style="margin-top: 15px">
+            MOTHER DETAILS
+          </div>
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="regMotherName" placeholder=" " />
+              <label for="regMotherName">Name</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="tel" id="regMotherContact" placeholder=" " />
+              <label for="regMotherContact">Contact Number</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-map-marker-alt input-icon"></i>
+              <input type="text" id="regMotherAddress" placeholder=" " />
+              <label for="regMotherAddress">Address</label>
+            </div>
+          </div>
+
+          <div class="section-label">FATHER DETAILS</div>
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="regFatherName" placeholder=" " />
+              <label for="regFatherName">Name</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="tel" id="regFatherContact" placeholder=" " />
+              <label for="regFatherContact">Contact Number</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-map-marker-alt input-icon"></i>
+              <input type="text" id="regFatherAddress" placeholder=" " />
+              <label for="regFatherAddress">Address</label>
+            </div>
+          </div>
+
+          <div class="section-label">GUARDIAN DETAILS</div>
+          <div class="grid-2">
+            <div class="input-group">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="regGuardianName" placeholder=" " />
+              <label for="regGuardianName">Name</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="tel" id="regGuardianContact" placeholder=" " />
+              <label for="regGuardianContact">Contact Number</label>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-map-marker-alt input-icon"></i>
+              <input type="text" id="regGuardianAddress" placeholder=" " />
+              <label for="regGuardianAddress">Address</label>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="action-btn primary-btn btn-full"
+            style="margin-top: 15px; margin-bottom: 20px"
+          >
+            CREATE ACCOUNT
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="dashboard-container" id="dashboardContainer">
+      <header class="dash-header">
+        <div>
+          <span class="sub-badge">PROFILE</span>
+          <h1 class="dash-title">Student Dashboard</h1>
+        </div>
+        <button class="logout-btn" onclick="logout()">
+          <i class="fas fa-sign-out-alt"></i> Sign out
+        </button>
+      </header>
+
+      <div class="dash-card profile-summary-card">
+        <div class="profile-left">
+          <div class="avatar-box" id="dashAvatar">--</div>
+          <div class="user-meta">
+            <span class="sub-badge">ENROLLED STUDENT</span>
+            <h2 id="dashFullName">--</h2>
+            <p class="meta-sub" id="dashMetaSub">--</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h3 class="card-heading">
+            <i class="fas fa-user"></i> Personal Details
+          </h3>
+          <div class="info-grid">
+            <div>
+              <div class="info-label">AGE</div>
+              <div class="info-value" id="dashAge">--</div>
+            </div>
+            <div>
+              <div class="info-label">BIRTHDAY</div>
+              <div class="info-value" id="dashBirthday">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">CONTACT</div>
+              <div class="info-value" id="dashContact">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">ADDRESS</div>
+              <div class="info-value" id="dashAddress">--</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3 class="card-heading">
+            <i class="fas fa-user"></i> Mother Details
+          </h3>
+          <div class="info-grid">
+            <div class="full-col">
+              <div class="info-label">NAME</div>
+              <div class="info-value" id="dashMotherName">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">CONTACT</div>
+              <div class="info-value" id="dashMotherContact">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">ADDRESS</div>
+              <div class="info-value" id="dashMotherAddress">--</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3 class="card-heading">
+            <i class="fas fa-user"></i> Father Details
+          </h3>
+          <div class="info-grid">
+            <div class="full-col">
+              <div class="info-label">NAME</div>
+              <div class="info-value" id="dashFatherName">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">CONTACT</div>
+              <div class="info-value" id="dashFatherContact">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">ADDRESS</div>
+              <div class="info-value" id="dashFatherAddress">--</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3 class="card-heading">
+            <i class="fas fa-user"></i> Guardian Details
+          </h3>
+          <div class="info-grid">
+            <div class="full-col">
+              <div class="info-label">NAME</div>
+              <div class="info-value" id="dashGuardianName">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">CONTACT</div>
+              <div class="info-value" id="dashGuardianContact">--</div>
+            </div>
+            <div class="full-col">
+              <div class="info-label">ADDRESS</div>
+              <div class="info-value" id="dashGuardianAddress">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="trial8.js"></script>
+  </body>
+</html>
