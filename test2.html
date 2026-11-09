@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profiling System</title>
+    <link rel="stylesheet" href="test2.css" />
+  </head>
+
+  <body>
+    <!-- LOGIN PAGE -->
+
+    <div id="authPage" class="auth-container">
+      <div class="auth-card">
+        <!-- LOGIN -->
+
+        <div id="loginForm">
+          <h2>Login</h2>
+
+          <input type="email" id="loginEmail" placeholder="Email" />
+
+          <input type="password" id="loginPassword" placeholder="Password" />
+
+          <button onclick="login()">Login</button>
+
+          <div class="link">
+            No account?
+            <a onclick="showRegister()"> Create Account </a>
+          </div>
+        </div>
+
+        <!-- REGISTER -->
+
+        <div id="registerForm" class="hidden">
+          <h2>Create Account</h2>
+
+          <input type="email" id="regEmail" placeholder="Email" />
+
+          <input type="password" id="regPassword" placeholder="Password" />
+
+          <button onclick="register()">Register</button>
+
+          <div class="link">
+            Already have an account?
+            <a onclick="showLogin()"> Login </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+
+    <div id="dashboardPage" class="hidden">
+      <div class="container">
+        <div class="header">
+          <div>
+            <h1>Dashboard</h1>
+            <h3 id="welcomeUser"></h3>
+          </div>
+
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <!-- STATISTICS -->
+
+        <div class="dashboard">
+          <div class="card">
+            <h2 id="totalStudents">0</h2>
+            <p>Total Students</p>
+          </div>
+
+          <div class="card">
+            <h2 id="maleStudents">0</h2>
+            <p>Male Students</p>
+          </div>
+
+          <div class="card">
+            <h2 id="femaleStudents">0</h2>
+            <p>Female Students</p>
+          </div>
+
+          <div class="card">
+            <h2 id="courseCount">0</h2>
+            <p>Courses Offered</p>
+          </div>
+        </div>
+
+        <!-- STUDENT FORM -->
+
+        <div class="section">
+          <h2 style="margin-bottom: 15px">Add Student</h2>
+
+          <div class="form-grid">
+            <input type="text" id="studentId" placeholder="Student ID" />
+
+            <input type="text" id="fullName" placeholder="Full Name" />
+
+            <input type="number" id="age" placeholder="Age" />
+
+            <select id="gender">
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+
+            <input type="text" id="course" placeholder="Course" />
+
+            <input type="text" id="yearLevel" placeholder="Year Level" />
+
+            <button class="add-btn" onclick="addStudent()">Add Student</button>
+          </div>
+        </div>
+
+        <!-- ANALYTICS -->
+
+        <div class="section">
+          <h3>Gender Distribution</h3>
+
+          <p>Male</p>
+
+          <div class="progress">
+            <div id="maleBar" class="maleBar"></div>
+          </div>
+
+          <p>Female</p>
+
+          <div class="progress">
+            <div id="femaleBar" class="femaleBar"></div>
+          </div>
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="section">
+          <table>
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="studentTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="test2.js"></script>
+  </body>
+</html>
